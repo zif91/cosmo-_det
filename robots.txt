@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /assets/photos/
+Disallow: /build_pages.py
+
+Sitemap: https://kosmos-detail.ru/sitemap.xml
+Host: https://kosmos-detail.ru
