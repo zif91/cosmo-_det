@@ -62,7 +62,7 @@
     </nav>
     <div class="header-cta">
       <a href="tel:+79310000000" class="header-phone">+7 (931) 000-00-00</a>
-      <a href="#zayavka" class="btn btn-primary">Рассчитать</a>
+      <a href="#booking" class="btn btn-primary">Записаться</a>
     </div>
     <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
   </div>
@@ -77,9 +77,12 @@
   <a href="detailing-salona.html">Детейлинг салона <span class="muted">05</span></a>
   <a href="komfort.html">Комфорт и оборудование <span class="muted">06</span></a>
   <a href="kontakty.html">Контакты <span class="muted">07</span></a>
+  <a href="index.html#radar">Радар зон <span class="muted">◇</span></a>
+  <a href="index.html#calculator">Калькулятор сметы <span class="muted">◇</span></a>
+  <a href="index.html#booking">Онлайн-запись <span class="muted">◇</span></a>
   <div class="mm-foot">
     <a href="tel:+79310000000" class="btn btn-ghost">+7 (931) 000-00-00</a>
-    <a href="#zayavka" class="btn btn-primary">Рассчитать стоимость</a>
+    <a href="#booking" class="btn btn-primary">Записаться</a>
   </div>
 </div>
 
@@ -91,7 +94,7 @@
     <h1 class="h-xxl" data-reveal data-d="1">Детейлинг<br>уровня <span class="shine">орбиты</span></h1>
     <p class="lead" data-reveal data-d="2">Технологичный детейлинг на Васильевском острове с <b class="gold">фиксированной сметой</b>, фото- и видео-контролем работ и гарантией результата. Отдельные чистые боксы — не поток автомойки.</p>
     <div class="hero-cta" data-reveal data-d="3">
-      <a href="#zayavka" class="btn btn-primary btn-lg">Рассчитать стоимость
+      <a href="#calculator" class="btn btn-primary btn-lg">Рассчитать смету
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a href="https://wa.me/79310000000" class="btn btn-wa btn-lg" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.24.68-1.42 1.31-1.96 1.36-.5.05-.99.22-2.43-.51-2.43-1.21-3.98-3.83-4.1-4-.12-.17-.99-1.32-.99-2.51s.62-1.78.84-2.02c.22-.24.48-.3.64-.3l.46.01c.15 0 .35-.06.54.41.2.49.68 1.68.74 1.8.06.12.1.26.02.43-.08.17-.12.27-.24.42l-.36.42c-.12.12-.24.25-.1.49.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.18 1.26z"/></svg>
@@ -219,6 +222,116 @@
         </div>
       </a>
 
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАДАР ЗОН ЗАЩИТЫ ===== -->
+<section class="section section-tight" id="radar">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Интерактивный радар</span>
+      <h2 class="h-xl">Карта уязвимостей&nbsp;вашего авто</h2>
+      <p>Выберите зону кузова — покажем, что ей угрожает и как мы защищаем. Параметры «до / после» детейлинга.</p>
+    </div>
+    <div class="panel" data-reveal>
+      <div class="panel-head">
+        <span class="tag"><span class="dot"></span>Cosmos diagnostics · сканирование зон</span>
+        <div class="meta">
+          <div><b>98.8%</b><span>точность защиты</span></div>
+          <div><b>STEK / Krytex</b><span>сертиф. материалы</span></div>
+        </div>
+      </div>
+      <div class="radar-tabs" id="radar-tabs"></div>
+      <div class="radar-grid">
+        <div class="radar-stage">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <svg class="car-svg" viewBox="0 0 760 330" role="img" aria-label="Схема зон автомобиля">
+            <!-- кузов -->
+            <path class="body" d="M58 236 Q60 214 84 208 L156 198 Q205 193 240 166 L304 138 Q334 120 374 118 L500 116 Q546 118 562 142 L616 178 L690 190 Q708 192 708 214 L704 236"/>
+            <line class="detail" x1="156" y1="200" x2="690" y2="190"/>
+            <!-- стекло -->
+            <path class="glass" d="M312 142 Q338 124 376 122 L498 121 Q540 122 556 144 L548 156 L324 156 Z"/>
+            <line class="detail" x1="436" y1="123" x2="436" y2="156"/>
+            <!-- арки -->
+            <path class="detail" d="M170 236 A48 48 0 0 1 266 236"/>
+            <path class="detail" d="M512 236 A48 48 0 0 1 608 236"/>
+            <!-- колёса -->
+            <circle class="wheel" cx="218" cy="238" r="46"/><circle class="wheel" cx="218" cy="238" r="22"/>
+            <circle class="wheel" cx="560" cy="238" r="46"/><circle class="wheel" cx="560" cy="238" r="22"/>
+            <!-- хотспоты -->
+            <g class="hot" data-zone="hood"><circle class="pulse" cx="112" cy="214" r="7"/><circle class="ring" cx="112" cy="214" r="17"/><circle class="core" cx="112" cy="214" r="7"/></g>
+            <g class="hot" data-zone="windshield"><circle class="pulse" cx="352" cy="132" r="7"/><circle class="ring" cx="352" cy="132" r="17"/><circle class="core" cx="352" cy="132" r="7"/></g>
+            <g class="hot" data-zone="interior"><circle class="pulse" cx="452" cy="138" r="7"/><circle class="ring" cx="452" cy="138" r="17"/><circle class="core" cx="452" cy="138" r="7"/></g>
+            <g class="hot" data-zone="sides"><circle class="pulse" cx="400" cy="200" r="7"/><circle class="ring" cx="400" cy="200" r="17"/><circle class="core" cx="400" cy="200" r="7"/></g>
+            <g class="hot" data-zone="wheels"><circle class="pulse" cx="560" cy="238" r="7"/><circle class="ring" cx="560" cy="238" r="17"/><circle class="core" cx="560" cy="238" r="7"/></g>
+          </svg>
+        </div>
+        <div class="diag" id="radar-diag"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КАЛЬКУЛЯТОР СМЕТЫ ===== -->
+<section class="section section-tight" id="calculator">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Бортовой калькулятор</span>
+      <h2 class="h-xl">Рассчитайте смету&nbsp;за минуту</h2>
+      <p>Прозрачный расчёт по классу авто и услугам — или ремонт сколов лобового по формуле ГОСТ. Точную смету фиксируем после осмотра.</p>
+    </div>
+    <div class="seg" id="calc-modes" data-reveal style="margin-bottom:24px">
+      <button class="active" data-mode="detail">Детейлинг и защита</button>
+      <button data-mode="gost">Ремонт сколов · ГОСТ</button>
+    </div>
+
+    <!-- режим 1 -->
+    <div id="calc-mode-detail" data-reveal>
+      <div class="calc-grid">
+        <div>
+          <div class="calc-step-label">Этап 1 · класс кузова</div>
+          <div class="calc-h">Габаритный класс вашего авто</div>
+          <div class="class-grid" id="calc-classes"></div>
+          <div class="calc-step-label">Этап 2 · услуги</div>
+          <div class="calc-h">Выберите необходимые работы</div>
+          <div class="svc-list" id="calc-services"></div>
+        </div>
+        <aside class="estimate">
+          <h3>Предварительная смета</h3>
+          <div class="lines" id="est-lines"></div>
+          <div class="meta-row"><span>Класс авто</span><b id="est-class">—</b></div>
+          <div class="meta-row"><span>Время на стенде</span><b id="est-time">—</b></div>
+          <div class="meta-row"><span>Гарантия</span><b>включена</b></div>
+          <div class="total"><span>Итого с учётом класса</span><b id="est-total">0 ₽</b></div>
+          <p class="note">* Ориентировочно. Точная смета — после бесплатного осмотра.</p>
+          <a href="#booking" class="btn btn-primary btn-block" data-book-to="Оклейка PPF">Перейти к записи →</a>
+        </aside>
+      </div>
+    </div>
+
+    <!-- режим 2 -->
+    <div id="calc-mode-gost" data-reveal style="display:none">
+      <div class="gost-grid">
+        <div>
+          <div class="calc-step-label">HUD-синтезатор стекла</div>
+          <div class="calc-h">Параметры повреждения лобового</div>
+          <div class="stepper"><span class="ab">A</span><span class="lab">Сколы (точки удара)<small>базовая герметизация</small></span><span class="ctrl"><button data-step="A:-1">−</button><span class="val" id="g-A">1 шт.</span><button data-step="A:1">+</button></span></div>
+          <div class="stepper"><span class="ab">B</span><span class="lab">Лучи трещин<small>высверливание</small></span><span class="ctrl"><button data-step="B:-1">−</button><span class="val" id="g-B">2 луч.</span><button data-step="B:1">+</button></span></div>
+          <div class="stepper"><span class="ab">C</span><span class="lab">Суммарная длина лучей<small>полимеризация</small></span><span class="ctrl"><button data-step="C:-5">−</button><span class="val" id="g-C">10 мм</span><button data-step="C:5">+</button></span></div>
+          <div class="formula">Формула: цена = сколы × 1000 ₽ + лучи × 300 ₽ + длина(мм) × 150 ₽</div>
+        </div>
+        <aside class="estimate">
+          <h3>Смета ремонта по ГОСТ</h3>
+          <div class="lines" id="gost-breakdown"></div>
+          <div class="meta-row"><span>Фотополимер</span><b>оптический, США</b></div>
+          <div class="meta-row"><span>Время</span><b>~ 40–60 мин</b></div>
+          <div class="meta-row"><span>Гарантия</span><b>включена</b></div>
+          <div class="total"><span>Итого</span><b id="gost-total">0 ₽</b></div>
+          <p class="note">* Включая вакуумирование и сушку. Возврат прозрачности 95–98%.</p>
+          <a href="#booking" class="btn btn-primary btn-block" data-book-to="Защита фар и стекла">Записаться на ремонт →</a>
+        </aside>
+      </div>
     </div>
   </div>
 </section>
@@ -378,6 +491,54 @@
       <div class="qa"><button>Сколько сохнет салон после химчистки?<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><p>Мы сушим салон принудительно и контролируем влажность. Авто выдаём только после проверки — без сырости и запаха. Гарантируем сухой салон.</p></div></div>
       <div class="qa"><button>Можно ли узнать цену заранее?<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><p>Да. После осмотра мы фиксируем смету до начала работ. Любые дополнительные работы согласуем отдельно по фото — без неожиданных доплат.</p></div></div>
       <div class="qa"><button>Где вы находитесь и как заехать?<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><p>Санкт-Петербург, Васильевский остров, ул. Кораблестроителей, 14 — рядом с гостиницей Cosmos, удобный съезд с ЗСД. Подробности и карта на странице «Контакты».</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ОНЛАЙН-ЗАПИСЬ ===== -->
+<section class="section section-tight" id="booking">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Онлайн-запись</span>
+      <h2 class="h-xl">Запишитесь на&nbsp;удобное окошко</h2>
+      <p>Выберите услугу, день и свободное время — мы подтвердим запись и заранее подготовим бокс.</p>
+    </div>
+    <div class="panel" data-reveal style="padding:clamp(22px,3vw,40px)">
+      <div class="book-grid">
+        <div>
+          <div class="book-step">
+            <div class="st-h"><span class="n">1</span><h4>Услуга</h4></div>
+            <div class="svc-chips" id="bk-services"></div>
+          </div>
+          <div class="book-step">
+            <div class="st-h"><span class="n">2</span><h4>Дата</h4></div>
+            <div class="day-pills" id="bk-days"></div>
+          </div>
+          <div class="book-step" style="margin-bottom:0">
+            <div class="st-h"><span class="n">3</span><h4>Свободное окошко</h4></div>
+            <div class="slot-grid" id="bk-slots"></div>
+          </div>
+        </div>
+        <aside class="book-summary">
+          <h3>Ваша запись</h3>
+          <div class="sl"><span class="ic">✦ Услуга</span><span class="vv empty" id="sm-svc">—</span></div>
+          <div class="sl"><span class="ic">✦ Дата</span><span class="vv empty" id="sm-day">—</span></div>
+          <div class="sl"><span class="ic">✦ Время</span><span class="vv empty" id="sm-slot">—</span></div>
+          <form id="bk-form" class="bk-fields">
+            <input id="bk-name" type="text" placeholder="Ваше имя" required>
+            <input id="bk-phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+            <p id="bk-warn" class="form-note" style="display:none;color:#e58e8e">Выберите услугу, дату и время.</p>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Записаться</button>
+            <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+          </form>
+          <div id="bk-ok" style="display:none;text-align:center;padding:8px 0">
+            <div style="width:58px;height:58px;margin:0 auto 14px;color:var(--gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div>
+            <h3 class="h-md">Вы записаны!</h3>
+            <p class="muted" id="bk-ok-text" style="margin-top:8px"></p>
+            <p class="muted" style="margin-top:6px;font-size:.85rem">Мы перезвоним для подтверждения ✦</p>
+          </div>
+        </aside>
+      </div>
     </div>
   </div>
 </section>
