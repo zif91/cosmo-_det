@@ -679,3 +679,59 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:700;line-height:1.05;lette
   .estimate,.book-summary{position:static}
   .class-grid{grid-template-columns:1fr}
 }
+
+/* ---------- РАДАР: фото-стейдж (замена SVG) ---------- */
+.radar-stage{padding:0;min-height:0;display:block;background:#06070d}
+.radar-stage::after{content:none}
+.radar-stage .corner{z-index:4}
+.radar-photo{position:relative;width:100%;aspect-ratio:3/4;max-height:560px;overflow:hidden}
+.radar-photo>img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.9) contrast(1.06) brightness(.86)}
+.radar-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(125% 95% at 50% 46%, transparent 34%, rgba(6,7,13,.5) 72%, rgba(6,7,13,.96) 100%),
+  linear-gradient(180deg,rgba(6,7,13,.45),transparent 26%,transparent 68%,rgba(6,7,13,.8)),
+  repeating-linear-gradient(0deg,transparent 0 29px,rgba(230,207,154,.04) 29px 30px),
+  repeating-linear-gradient(90deg,transparent 0 29px,rgba(230,207,154,.04) 29px 30px)}
+.radar-photo .scan{position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);box-shadow:0 0 18px 3px var(--gold-glow);opacity:.55;animation:scanmove 5s ease-in-out infinite}
+@keyframes scanmove{0%{top:7%}50%{top:90%}100%{top:7%}}
+.radar-photo .hot{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;z-index:3;background:none}
+.radar-photo .hot::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--gold);opacity:.55;animation:hotpulse 2.6s ease-out infinite}
+.radar-photo .hot .pt{width:13px;height:13px;border-radius:50%;background:var(--gold-bright);
+  box-shadow:0 0 0 4px rgba(230,207,154,.16),0 0 14px 3px var(--gold-glow);transition:.3s var(--ease)}
+.radar-photo .hot .lbl{position:absolute;left:50%;top:calc(100% + 7px);transform:translateX(-50%);white-space:nowrap;
+  font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+  background:rgba(6,7,13,.72);backdrop-filter:blur(4px);padding:3px 8px;border-radius:var(--r-pill);
+  box-shadow:inset 0 0 0 1px var(--gold-line);opacity:0;transition:.3s;pointer-events:none}
+.radar-photo .hot:hover .lbl,.radar-photo .hot.active .lbl{opacity:1}
+.radar-photo .hot.active{width:42px;height:42px}
+.radar-photo .hot.active::before{opacity:1;border-width:2px;border-color:var(--gold-bright)}
+.radar-photo .hot.active .pt{width:18px;height:18px;background:#fff7e6;box-shadow:0 0 0 6px rgba(230,207,154,.22),0 0 22px 6px var(--gold-glow)}
+@keyframes hotpulse{0%{transform:scale(.7);opacity:.55}100%{transform:scale(2.3);opacity:0}}
+@media (max-width:980px){ .radar-photo{max-height:none} }
+
+/* радар: вкладки только на мобиле (на десктопе дублируют хотспоты) */
+.radar-tabs{display:none}
+@media (max-width:980px){
+  .radar-tabs{display:flex}
+  .radar-photo .hot{width:44px;height:44px}              /* удобнее тап */
+  .radar-photo .hot .lbl{display:none}                   /* зону называют вкладки + карточка */
+}
+
+/* мобайл-фикс переполнения: grid-дети должны сжиматься, значения переноситься */
+@media (max-width:980px){
+  .radar-grid>*,.calc-grid>*,.gost-grid>*,.book-grid>*,.split>*{min-width:0}
+  .bna .row{grid-template-columns:1fr auto}
+  .bna .row .v{white-space:normal;text-align:right;flex-wrap:wrap;justify-content:flex-end}
+  .estimate .li,.gost-breakdown .li{gap:8px}
+}
+
+/* мобайл-фикс: подвал в 1 колонку, длинные кнопки переносятся, нет гориз. скролла */
+@media (max-width:600px){
+  .foot-grid{grid-template-columns:1fr;gap:30px}
+  .btn{white-space:normal}
+  .seg button,.radar-tabs button{white-space:normal}
+}
+
+html{overflow-x:clip}
+.hero-media{overflow:hidden}

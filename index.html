@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css?v=2">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -246,26 +246,15 @@
       <div class="radar-grid">
         <div class="radar-stage">
           <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <svg class="car-svg" viewBox="0 0 760 330" role="img" aria-label="Схема зон автомобиля">
-            <!-- кузов -->
-            <path class="body" d="M58 236 Q60 214 84 208 L156 198 Q205 193 240 166 L304 138 Q334 120 374 118 L500 116 Q546 118 562 142 L616 178 L690 190 Q708 192 708 214 L704 236"/>
-            <line class="detail" x1="156" y1="200" x2="690" y2="190"/>
-            <!-- стекло -->
-            <path class="glass" d="M312 142 Q338 124 376 122 L498 121 Q540 122 556 144 L548 156 L324 156 Z"/>
-            <line class="detail" x1="436" y1="123" x2="436" y2="156"/>
-            <!-- арки -->
-            <path class="detail" d="M170 236 A48 48 0 0 1 266 236"/>
-            <path class="detail" d="M512 236 A48 48 0 0 1 608 236"/>
-            <!-- колёса -->
-            <circle class="wheel" cx="218" cy="238" r="46"/><circle class="wheel" cx="218" cy="238" r="22"/>
-            <circle class="wheel" cx="560" cy="238" r="46"/><circle class="wheel" cx="560" cy="238" r="22"/>
-            <!-- хотспоты -->
-            <g class="hot" data-zone="hood"><circle class="pulse" cx="112" cy="214" r="7"/><circle class="ring" cx="112" cy="214" r="17"/><circle class="core" cx="112" cy="214" r="7"/></g>
-            <g class="hot" data-zone="windshield"><circle class="pulse" cx="352" cy="132" r="7"/><circle class="ring" cx="352" cy="132" r="17"/><circle class="core" cx="352" cy="132" r="7"/></g>
-            <g class="hot" data-zone="interior"><circle class="pulse" cx="452" cy="138" r="7"/><circle class="ring" cx="452" cy="138" r="17"/><circle class="core" cx="452" cy="138" r="7"/></g>
-            <g class="hot" data-zone="sides"><circle class="pulse" cx="400" cy="200" r="7"/><circle class="ring" cx="400" cy="200" r="17"/><circle class="core" cx="400" cy="200" r="7"/></g>
-            <g class="hot" data-zone="wheels"><circle class="pulse" cx="560" cy="238" r="7"/><circle class="ring" cx="560" cy="238" r="17"/><circle class="core" cx="560" cy="238" r="7"/></g>
-          </svg>
+          <div class="radar-photo">
+            <img src="assets/img/work-088.jpg" alt="Сканирование зон автомобиля — Космос Детейлинг" loading="lazy">
+            <span class="scan"></span>
+            <button class="hot" data-zone="hood" style="left:22%;top:62%" aria-label="Морда и оптика"><span class="pt"></span><span class="lbl">Морда · оптика</span></button>
+            <button class="hot" data-zone="windshield" style="left:47%;top:30%" aria-label="Лобовое стекло"><span class="pt"></span><span class="lbl">Лобовое</span></button>
+            <button class="hot" data-zone="interior" style="left:66%;top:30%" aria-label="Салон"><span class="pt"></span><span class="lbl">Салон</span></button>
+            <button class="hot" data-zone="sides" style="left:84%;top:52%" aria-label="Борта и ЛКП"><span class="pt"></span><span class="lbl">Борта · ЛКП</span></button>
+            <button class="hot" data-zone="wheels" style="left:73%;top:78%" aria-label="Колёса"><span class="pt"></span><span class="lbl">Колёса</span></button>
+          </div>
         </div>
         <div class="diag" id="radar-diag"></div>
       </div>
@@ -643,6 +632,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.24.68-1.42 1.31-1.96 1.36-.5.05-.99.22-2.43-.51-2.43-1.21-3.98-3.83-4.1-4-.12-.17-.99-1.32-.99-2.51s.62-1.78.84-2.02c.22-.24.48-.3.64-.3l.46.01c.15 0 .35-.06.54.41.2.49.68 1.68.74 1.8.06.12.1.26.02.43-.08.17-.12.27-.24.42l-.36.42c-.12.12-.24.25-.1.49.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.18 1.26z"/></svg>
 </a>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>
