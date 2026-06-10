@@ -69,6 +69,7 @@ if [ -d "${SITE_DIR}/install" ]; then
         --removeInstall=y
 fi
 
+cd "${SITE_DIR}"   # cli-install с --removeInstall=y удаляет текущий каталог .../install
 echo "==> PageBuilder + ClientSettings (файлы)"
 TMP="$(mktemp -d)"
 git clone -q --depth 1 "$PB_REPO" "$TMP/pb"
@@ -99,6 +100,7 @@ ROBOTS
 
 echo "==> Composer-автозагрузка custom-пакета"
 cd "${SITE_DIR}/core"
+php -r '$f="composer.json";$j=json_decode(file_get_contents($f),true);$j["autoload"]["psr-4"]["EvolutionCMS\\Main\\"]="custom/packages/main/src/";file_put_contents($f,json_encode($j,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE));'
 composer dump-autoload --no-interaction --quiet || composer dump-autoload --no-interaction
 
 echo "==> Миграции (структура, контент, плагины)"
