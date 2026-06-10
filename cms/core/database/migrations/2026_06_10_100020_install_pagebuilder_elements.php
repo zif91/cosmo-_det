@@ -41,7 +41,7 @@ return new class extends Migration {
                 'description' => 'Конструктор блоков страницы',
                 'category'    => $categoryId,
                 'plugincode'  => require __DIR__ . '/../seeds/elements/pagebuilder_plugin.php',
-                'properties'  => '&tabName=Tab name;text;Конструктор &addType=Add type;menu;dropdown,icons,images;dropdown &placement=Placement;menu;content,tab;content &order=Default container ordering;text;0',
+                'properties'  => '&tabName=Tab name;text;Конструктор &addType=Add type;menu;dropdown,icons,images;dropdown &placement=Placement;menu;content,tab;tab &order=Default container ordering;text;0',
                 'disabled'    => 0,
                 'createdon'   => $now,
                 'editedon'    => $now,
