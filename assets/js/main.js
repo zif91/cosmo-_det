@@ -107,13 +107,37 @@
     });
   });
 
-  /* ---------- Lead form (демо-отправка) ---------- */
+  /* ---------- Lead form ---------- */
+  const sendLead = (payload) => {
+    // без бэкенда (статическая версия) — просто показываем «отправлено»
+    if (!window.kosmosApi || !window.kosmosApi.lead) return Promise.resolve({ ok: true });
+    return fetch(window.kosmosApi.lead, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
+      body: JSON.stringify(payload),
+    }).then((r) => r.json()).catch(() => ({ ok: false, errors: { network: "Ошибка сети" } }));
+  };
+
   $$("form[data-lead]").forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const ok = $(".form-ok", form.parentElement) || $(".form-ok", form);
-      form.style.display = "none";
-      if (ok) ok.classList.add("show");
+      const btn = $("button[type=submit]", form);
+      if (btn) btn.disabled = true;
+      const chips = $$(".chip.active", form).map((c) => c.textContent.trim()).join(", ");
+      const val = (sel) => { const i = $(sel, form); return i ? i.value.trim() : ""; };
+      sendLead({
+        name: val("input[id=nm], input[name=name]"),
+        phone: val("input[id=ph], input[name=phone]"),
+        car: val("input[id=car], input[name=car]"),
+        services: chips,
+        source: document.title,
+      }).then((res) => {
+        if (btn) btn.disabled = false;
+        if (!res.ok) { alert((res.errors && Object.values(res.errors)[0]) || "Не удалось отправить. Позвоните нам!"); return; }
+        const ok = $(".form-ok", form.parentElement) || $(".form-ok", form);
+        form.style.display = "none";
+        if (ok) ok.classList.add("show");
+      });
     });
   });
 
@@ -471,11 +495,24 @@
         const w = $("#bk-warn"); if (w) { w.style.display = "block"; }
         return;
       }
-      $("#bk-form").style.display = "none";
-      const ok = $("#bk-ok");
-      if (ok) { ok.style.display = "block";
-        $("#bk-ok-text").textContent = state.svc + " · " + dayList[state.day].getDate() + " " + MO[dayList[state.day].getMonth()] + " в " + state.slot;
-      }
+      const when = dayList[state.day].getDate() + " " + MO[dayList[state.day].getMonth()] + " в " + state.slot;
+      const btn = $("button[type=submit]", form);
+      if (btn) btn.disabled = true;
+      sendLead({
+        name: ($("#bk-name") || {}).value || "",
+        phone: ($("#bk-phone") || {}).value || "",
+        services: state.svc,
+        booking: when,
+        source: "Онлайн-запись · " + document.title,
+      }).then((res) => {
+        if (btn) btn.disabled = false;
+        if (!res.ok) { alert((res.errors && Object.values(res.errors)[0]) || "Не удалось отправить. Позвоните нам!"); return; }
+        $("#bk-form").style.display = "none";
+        const ok = $("#bk-ok");
+        if (ok) { ok.style.display = "block";
+          $("#bk-ok-text").textContent = state.svc + " · " + when;
+        }
+      });
     });
   }
 })();
