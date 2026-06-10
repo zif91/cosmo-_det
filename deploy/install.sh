@@ -11,17 +11,20 @@
 #
 set -euo pipefail
 
+# head обрывает pipe (SIGPIPE у tr) — без обёртки pipefail валит скрипт
+genpass() { (tr -dc 'A-Za-z0-9' </dev/urandom | head -c "${1:-20}") 2>/dev/null || true; }
+
 # ---------------- параметры ----------------
 REPO_DIR="${REPO_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 SITE_DIR="${SITE_DIR:-/var/www/kosmos}"
 SITE_URL="${SITE_URL:-}"                    # пусто = http://<ip сервера>
 DB_NAME="${DB_NAME:-kosmos}"
 DB_USER="${DB_USER:-kosmos}"
-DB_PASS="${DB_PASS:-$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 20)}"
+DB_PASS="${DB_PASS:-$(genpass 20)}"
 DB_PREFIX="${DB_PREFIX:-evo_}"
 ADMIN_USER="${ADMIN_USER:-admin}"
 ADMIN_EMAIL="${ADMIN_EMAIL:-info@kosmos-detail.ru}"
-ADMIN_PASSWORD="${ADMIN_PASSWORD:-$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 14)}"
+ADMIN_PASSWORD="${ADMIN_PASSWORD:-$(genpass 14)}"
 EVO_REPO="${EVO_REPO:-https://github.com/evocms-community/evolution.git}"
 PB_REPO="${PB_REPO:-https://github.com/evocms-community/pagebuilder.git}"
 CS_REPO="${CS_REPO:-https://github.com/evocms-community/clientsettings.git}"
