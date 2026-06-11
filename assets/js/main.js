@@ -304,27 +304,40 @@
   /* ---------------- КАЛЬКУЛЯТОР ---------------- */
   const calc = $("#calculator");
   if (calc) {
-    const CLASSES = [
+    const CLASSES_FALLBACK = [
       { id:"m", name:"Малый / средний класс", mult:1, eg:"Tesla Model 3, BMW 3, Audi A4, Zeekr X" },
       { id:"p", name:"Premium седан / кроссовер", mult:1.2, eg:"Zeekr 001, BMW 5, Porsche Taycan, Voyah Free" },
       { id:"s", name:"Внедорожник / Big SUV", mult:1.4, eg:"Li L9, BMW X7, Range Rover, Land Cruiser" },
       { id:"c", name:"Спорткар / минивэн", mult:1.3, eg:"Porsche 911, Zeekr 009, Audi R8, Alphard" },
     ];
-    const SERVICES = [
-      { id:"ppf_front", name:"Защита «Зоны риска» PPF", sub:"Полиуретан на перёд: капот, бампер, фары, зеркала", price:70000, d:2 },
+    const SERVICES_FALLBACK = [
+      { id:"ppf_front", name:"Защита «Зоны риска» PPF", sub:"Полиуретан на перёд: капот, бампер, фары, зеркала", price:50000, d:2 },
       { id:"ppf_full", name:"Полная оклейка кузова PPF", sub:"Круговая броня, самовосстановление царапин", price:200000, d:4 },
       { id:"polish_cer", name:"Деликатная полировка + керамика 2 слоя", sub:"Глубокий блеск и защита на сезон", price:35000, d:2 },
       { id:"polish_corr", name:"Восстановительная полировка кузова", sub:"Удаление царапин, голограмм, водного камня", price:14000, d:1 },
       { id:"ceramic_pro", name:"Керамика премиум (многослойная)", sub:"Максимальная защита и глубина цвета", price:30000, d:2 },
       { id:"chem", name:"Детейлинг-химчистка салона", sub:"Глубокая чистка + озонация, сухой салон", price:12000, d:1 },
-      { id:"leather", name:"Реставрация и защита кожи", sub:"Чистка, восстановление, консервация", price:8000, d:1 },
-      { id:"glass", name:"Бронирование лобового стекла", sub:"Оптическая плёнка от сколов и трещин", price:14000, d:1 },
+      { id:"leather", name:"Реставрация и защита кожи", sub:"Чистка, восстановление, консервация", price:12000, d:1 },
+      { id:"glass", name:"Бронирование лобового стекла", sub:"Оптическая плёнка от сколов и трещин", price:16000, d:1 },
       { id:"tint", name:"Атермальная тонировка по ГОСТ", sub:"Меньше жары и UV, по нормативам ДПС", price:9000, d:1 },
       { id:"head", name:"Бронирование и полировка фар", sub:"Защита и прозрачность оптики", price:6000, d:1 },
       { id:"aqua", name:"Антидождь на стёкла", sub:"Гидрофоб, рекомендуем в комплексе", price:2000, d:0.5 },
     ];
+
+    // Данные из админки (PageBuilder, блок «Калькулятор») с фолбэком на хардкод, если блок пуст
+    let cd = {};
+    try {
+      const cdEl = document.getElementById("calc-data");
+      if (cdEl) cd = JSON.parse(cdEl.textContent) || {};
+    } catch (e) { cd = {}; }
+    const CLASSES  = (cd.classes  && cd.classes.length)  ? cd.classes  : CLASSES_FALLBACK;
+    const SERVICES = (cd.services && cd.services.length) ? cd.services : SERVICES_FALLBACK;
+    const G_CHIP = Number(cd.gost && cd.gost.chip) || 1000;
+    const G_RAY  = Number(cd.gost && cd.gost.ray)  || 300;
+    const G_MM   = Number(cd.gost && cd.gost.mm)   || 150;
     let curClass = "p";
-    const sel = new Set(["ppf_front", "polish_cer"]);
+    if (!CLASSES.find((c) => c.id === curClass)) curClass = CLASSES[0].id;
+    const sel = new Set(["ppf_front", "polish_cer"].filter((id) => SERVICES.some((s) => s.id === id)));
 
     const classWrap = $("#calc-classes");
     const svcWrap = $("#calc-services");
@@ -390,14 +403,14 @@
     /* GOST ремонт сколов */
     const g = { A: 1, B: 2, C: 10 };
     const gostRecalc = () => {
-      const chip = g.A * 1000, ray = g.B * 300, len = g.C * 150, tot = chip + ray + len;
+      const chip = g.A * G_CHIP, ray = g.B * G_RAY, len = g.C * G_MM, tot = chip + ray + len;
       $("#g-A").textContent = g.A + " шт.";
       $("#g-B").textContent = g.B + " луч.";
       $("#g-C").textContent = g.C + " мм";
       $("#gost-breakdown").innerHTML =
-        '<div class="li"><span class="ln">Герметизация сколов<small>' + g.A + " × 1 000 ₽</small></span><span class=\"lp\">" + rub(chip) + "</span></div>" +
-        '<div class="li"><span class="ln">Высверливание лучей<small>' + g.B + " × 300 ₽</small></span><span class=\"lp\">" + rub(ray) + "</span></div>" +
-        '<div class="li"><span class="ln">Полимеризация по длине<small>' + g.C + " мм × 150 ₽</small></span><span class=\"lp\">" + rub(len) + "</span></div>";
+        '<div class="li"><span class="ln">Герметизация сколов<small>' + g.A + " × " + G_CHIP.toLocaleString("ru-RU") + " ₽</small></span><span class=\"lp\">" + rub(chip) + "</span></div>" +
+        '<div class="li"><span class="ln">Высверливание лучей<small>' + g.B + " × " + G_RAY.toLocaleString("ru-RU") + " ₽</small></span><span class=\"lp\">" + rub(ray) + "</span></div>" +
+        '<div class="li"><span class="ln">Полимеризация по длине<small>' + g.C + " мм × " + G_MM.toLocaleString("ru-RU") + " ₽</small></span><span class=\"lp\">" + rub(len) + "</span></div>";
       $("#gost-total").textContent = rub(tot);
     };
     $$("#calc-mode-gost [data-step]").forEach((b) => b.addEventListener("click", () => {
@@ -426,7 +439,7 @@
       '<span class="d" data-day="' + i + '"><small>' + WD[d.getDay()] + "</small>" + d.getDate() + " " + MO[d.getMonth()] + "</span>"
     ).join("");
 
-    const busy = (di, si) => ((di * 5 + si * 3 + 2) % 7) < 2; // детерминированная «занятость»
+    const busy = (di, si) => false;
     const renderSlots = () => {
       const di = state.day;
       $("#bk-slots").innerHTML = SLOTS.map((t, si) => {
